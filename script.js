@@ -3,7 +3,7 @@ let dictionary = {
   level1: {
     loD: {
       klingon: "loD",
-      nype: "noun",
+      type: "noun",
       english: "man",
     },
     be_: {
@@ -19,7 +19,7 @@ let dictionary = {
     jagh: {
       klingon: "jagh",
       type: "noun",
-      english: "ennemy",
+      english: "enemy",
     },
     puq: {
       klingon: "puq",
@@ -88,8 +88,8 @@ let dictionary = {
     },
     Sop: {
       klingon: "Sop",
-      type: "verb"
-      english: "eats"
+      type: "verb",
+      english: "eats",
     },
     tlhutlh: {
       klingon: "tlhutlh",
@@ -121,33 +121,43 @@ let dictionary = {
  
 function displayWords(level) {
   let dict = dictionary[level];
-  let words = Object.keys(dict);
   let lesson = document.getElementById("lesson");
 
   for (let word in dict) {
+    let wordContainer = document.createElement("div");
     let label = document.createElement("label");
     let input = document.createElement("input");
     let button = document.createElement("input");
+    let result = document.createElement("p");
 
-    label.textContent = dict[word].klingon;
+    wordContainer.setAttribute("id", dict[word].klingon);
+    wordContainer.setAttribute("class", "wordContainer");
+
+    label.textContent = `${dict[word].klingon} :`;
 
     input.setAttribute("type", "text");
     input.setAttribute("id", dict[word].klingon);
+    input.setAttribute("size", 10);
 
     button.setAttribute("type", "submit");
+    button.setAttribute("value", "submit");
     button.addEventListener("click", () => {
-      console.log(typeof input.value, typeof dict[word].english);
-      checkAnswer(input, dict[word].english);
+      checkAnswer(input, dict[word].english, result);
     });
 
-    lesson.append(label, input, button);
+    result.setAttribute("style", "display: none");
+    result.textContent = dict[word].type;
+
+
+    wordContainer.append(label, input, button, result);
+    lesson.append(wordContainer);
   };
 };
 
 let testFunction = document.getElementById("start");
-testFunction.addEventListener("click", () => displayWords("level1")); //testing function
+//testFunction.addEventListener("click", () => displayWords("level1")); //testing function
 
-function checkAnswer(input, answer) {
+function checkAnswer(input, answer, result) {
   if (input.value == answer) {
     console.log("oui");
   } else {
@@ -155,3 +165,4 @@ function checkAnswer(input, answer) {
   };
 };
 
+displayWords("level1"); //testing function
