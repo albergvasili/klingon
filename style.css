@@ -1,0 +1,10 @@
+.wordContainer {
+  margin: 1em;
+  display: flex;
+}
+
+.wordContainer>* {
+  margin: 3px;
+}
+
+
