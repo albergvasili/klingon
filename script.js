@@ -146,7 +146,7 @@ function displayWords(level) {
     });
 
     result.setAttribute("style", "display: none");
-    result.textContent = dict[word].type;
+    result.textContent = "Try again";//dict[word].type;
 
 
     wordContainer.append(label, input, button, result);
@@ -159,9 +159,11 @@ let testFunction = document.getElementById("start");
 
 function checkAnswer(input, answer, result) {
   if (input.value == answer) {
-    console.log("oui");
+    result.removeAttribute("style");
+    result.textContent = "Correct !"
+    input.setAttribute("readonly", "readonly");
   } else {
-    console.log("non");
+    result.removeAttribute("style");
   };
 };
 
