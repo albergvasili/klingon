@@ -188,7 +188,7 @@ let testFunction = document.getElementById("start");
 //testFunction.addEventListener("click", () => displayWords("level1")); //testing function
 
 function checkAnswer(input, answer, result) {
-  if (input.value == answer) {
+  if (input.value.toLowerCase() == answer) {
     result.removeAttribute("style");
     result.textContent = "Correct !";
     input.setAttribute("readonly", "readonly");
