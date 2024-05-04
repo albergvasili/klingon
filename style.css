@@ -1,10 +1,16 @@
-.wordContainer {
+.inputContainer {
   margin: 1em;
   display: flex;
 }
 
-.wordContainer>* {
+.inputContainer>* {
   margin: 3px;
 }
 
+.wordContainer {
+  border-bottom: 2px solid;
+}
 
+.result {
+  margin: 15px;
+}

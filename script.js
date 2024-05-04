@@ -186,13 +186,16 @@ function displayWords(level) {
   //Create tags for each word
   for (let word in dict) {
     let wordContainer = document.createElement("div");
+    let inputContainer = document.createElement("div");
     let label = document.createElement("label");
     let input = document.createElement("input");
     let button = document.createElement("input");
-    let result = document.createElement("p");
+    let result = document.createElement("div");
 
     wordContainer.setAttribute("id", dict[word].klingon);
     wordContainer.setAttribute("class", "wordContainer");
+
+    inputContainer.setAttribute("class", "inputContainer");
 
     label.textContent = `${dict[word].klingon} :`;
 
@@ -206,10 +209,12 @@ function displayWords(level) {
       checkAnswer(input, dict[word].english, result);
     });
 
+    result.setAttribute("class", "result");
     result.setAttribute("style", "display: none");
-    result.textContent = `Try again: Imagine ${dict[word].imagine}`;//dict[word].type;
+    result.textContent = `Try again: Imagine ${dict[word].imagine}`;
 
-    wordContainer.append(label, input, button, result);
+    inputContainer.append(label, input, button);
+    wordContainer.append(inputContainer, result);
     lesson.append(wordContainer);
   };
 };
