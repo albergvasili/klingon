@@ -184,8 +184,21 @@ let dictionary = {
     imagine: "this word is NOT 'woman'... It's a suffix.",
   },
 };
+
+function newElement(element, id="", classe="", extraAttribute=false, type=false) {
+  let newElement = document.createElement(element);
+  newElement.setAttribute("id", id);
+  newElement.setAttribute("class", classe);
+  if (extraAttribute) {
+    newElement.setAttribute(extraAttribute[0], extraAttribute[1]);
+  }
+  if (type) {
+    newElement.setAttribute("type", type);
+  }
+  return newElement;
+};
  
-function displayWords(level) {
+function displayWords(level, fromLang, toLang) {
 
   //Filter words by level |TODO: extract logic to outer scope
   let dict;
@@ -193,58 +206,56 @@ function displayWords(level) {
   for (let word in dictionary) {
     if (dictionary[word].level <= level) {
       dict = { ...dict, [word]: dictionary[word] }
-    };
-  };
+    }
+  }
 
   let lesson = document.getElementById("lesson");
+  let vocabulary = newElement("div", "vocabulary");
+
 
   //Create tags for each word
   for (let word in dict) {
-    let wordContainer = document.createElement("div");
-    let inputContainer = document.createElement("div");
+    let wordContainer = newElement("div", dict[word][fromLang], "wordContainer");
+    let inputContainer = newElement("div", "", "inputContainer");
     let label = document.createElement("label");
-    let input = document.createElement("input");
-    let button = document.createElement("input");
-    let result = document.createElement("div");
+    let input = newElement("input", dict[word][fromLang], "", ["size", 10], "text");
+    let button = newElement("input", "", "", ["value", "submit"], "submit");
+    let result = newElement("div", "", "result", ["style", "display: none"]);
 
-    wordContainer.setAttribute("id", dict[word].klingon);
-    wordContainer.setAttribute("class", "wordContainer");
+    label.textContent = `${dict[word][fromLang]} :`;
 
-    inputContainer.setAttribute("class", "inputContainer");
-
-    label.textContent = `${dict[word].klingon} :`;
-
-    input.setAttribute("type", "text");
-    input.setAttribute("id", dict[word].klingon);
-    input.setAttribute("size", 10);
-
-    button.setAttribute("type", "submit");
-    button.setAttribute("value", "submit");
     button.addEventListener("click", () => {
-      checkAnswer(input, dict[word].english, result);
+      checkAnswer(input, dict[word][toLang], result, toLang);
     });
 
-    result.setAttribute("class", "result");
-    result.setAttribute("style", "display: none");
     result.textContent = `Try again: Imagine ${dict[word].imagine}`;
 
     inputContainer.append(label, input, button);
     wordContainer.append(inputContainer, result);
-    lesson.append(wordContainer);
-  };
+    vocabulary.append(wordContainer);
+  }
+
+  lesson.append(vocabulary);
 };
 
 let testFunction = document.getElementById("start");
 testFunction.addEventListener("click", () => sentenceGenerator()); //testing function
 
-function checkAnswer(input, answer, result) {
-  if (input.value.toLowerCase() == answer) {
+function checkAnswer(input, answer, result, toLang) {
+  let inputValue;
+  if (toLang == "english") {
+    inputValue = input.value.toLowerCase();
+  } else {
+    inputValue = input.value;
+  }
+
+  if (inputValue == answer) {
     result.removeAttribute("style");
     result.textContent = "Correct !";
     input.setAttribute("readonly", "readonly");
   } else {
     result.removeAttribute("style");
-  };
+  }
 };
 
 function randomWord(selectDictionary) {
@@ -263,7 +274,7 @@ function sentenceGenerator() {
     } else if (dictionary[word].type == "noun") {
       nounDict = { ...nounDict, [word]: dictionary[word] };
     }
-  };
+  }
 
   // let numberOfNouns = () => Math.floor(Math.random()*2);
   let verb = randomWord(verbDict);
@@ -274,4 +285,4 @@ function sentenceGenerator() {
 };
 
 
-displayWords(1); //testing function
+displayWords(1, "english", "klingon"); //testing function
