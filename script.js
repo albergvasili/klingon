@@ -215,11 +215,11 @@ function chooseLanguage() {
   let lesson = document.getElementById("lesson");
   englishKlingon.addEventListener("click", () => {
     lesson.removeChild(lesson.lastChild);
-    displayWords(1, "klingon", "english")
+    displayWords(1, "english", "klingon")
   });
   klingonEnglish.addEventListener("click", () => {
     lesson.removeChild(lesson.lastChild);
-    displayWords(1, "english", "klingon")
+    displayWords(1, "klingon", "english")
   });
 
   choose.append(englishKlingon, klingonEnglish);
