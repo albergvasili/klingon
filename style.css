@@ -1,16 +1,20 @@
-.inputContainer {
+.formContainer {
   margin: 1em;
   display: flex;
 }
 
-.inputContainer>* {
+.formContainer>* {
   margin: 3px;
 }
 
-.wordContainer {
+.questionContainer {
   border-bottom: 2px solid;
 }
 
 .result {
   margin: 15px;
+}
+
+#lesson {
+  display: flex;
 }

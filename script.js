@@ -193,7 +193,6 @@ startLesson.addEventListener("click", () => {
 }
 );
 
-
 function newElement(element, classe="", extraAttribute=false, type=false) {
   let newElement = document.createElement(element);
   newElement.setAttribute("class", classe);
@@ -223,6 +222,28 @@ function chooseLanguage() {
 
   choose.append(englishKlingon, klingonEnglish);
 };
+
+function questions(translate, answer, wrongAnswer="", toLang) {
+  let questionContainer = newElement("div", "questionContainer");
+  let formContainer = newElement("div", "formContainer");
+  let label = document.createElement("label");
+  let input = newElement("input", "", ["size", 10], "text");
+  let button = newElement("input", "", ["value", "submit"], "submit");
+  let result = newElement("div", "result", ["style", "display: none"]);
+
+  label.textContent = `${translate} :`;
+
+  button.addEventListener("click", () => {
+    checkAnswer(input, answer, result, toLang);
+  });
+
+  result.textContent = `Try again ${wrongAnswer}`;
+
+  formContainer.append(label, input, button);
+  questionContainer.append(formContainer, result);
+
+  return questionContainer;
+};
  
 function displayWords(level, fromLang, toLang) {
 
@@ -238,27 +259,9 @@ function displayWords(level, fromLang, toLang) {
   let lesson = document.getElementById("lesson");
   let vocabulary = newElement("div");
 
-
   //Create tags for each word
   for (let word in dict) {
-    let wordContainer = newElement("div", "wordContainer");
-    let inputContainer = newElement("div", "inputContainer");
-    let label = document.createElement("label");
-    let input = newElement("input", "", ["size", 10], "text");
-    let button = newElement("input", "", ["value", "submit"], "submit");
-    let result = newElement("div", "result", ["style", "display: none"]);
-
-    label.textContent = `${dict[word][fromLang]} :`;
-
-    button.addEventListener("click", () => {
-      checkAnswer(input, dict[word][toLang], result, toLang);
-    });
-
-    result.textContent = `Try again: Imagine ${dict[word].imagine}`;
-
-    inputContainer.append(label, input, button);
-    wordContainer.append(inputContainer, result);
-    vocabulary.append(wordContainer);
+    vocabulary.append(questions(dict[word][fromLang], dict[word][toLang], `Imagine ${dict[word].imagine}`, toLang));
   }
 
   lesson.append(vocabulary);
@@ -312,24 +315,7 @@ function sentenceGenerator() {
     english: `The ${nounDict[noun].english} ${verbDict[verb].english}`
   };
 
-  // TODO: Refactor tag creation logic from displayWords()
   let sencences = document.getElementById("sentences");
 
-  let wordContainer = newElement("div", "wordContainer");
-  let inputContainer = newElement("div", "inputContainer");
-
-  let label = document.createElement("label");
-  let input = newElement("input", "", ["size", 10], "text");
-  let button = newElement("input", "", ["value", "submit"], "submit");
-  let result = newElement("div", "result", ["style", "display: none"]);
-
-  label.textContent = phrase.klingon;
-  result.textContent = `Try again.`;
-  button.addEventListener("click", () => {
-    checkAnswer(input, phrase.english, result, "english");
-  });
-
-  inputContainer.append(label, input, button);
-  wordContainer.append(inputContainer, result);
-  sentences.append(wordContainer);
+  sentences.append(questions(phrase.klingon, phrase.english, "", "english"));
 };
