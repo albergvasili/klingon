@@ -185,6 +185,7 @@ let dictionary = {
   },
 };
 
+let quiz = document.getElementById("quiz");
 let chooseLesson = document.getElementById("choose-lesson");
 let startLesson = document.getElementById("start-lesson");
 startLesson.addEventListener("click", () => {
@@ -210,13 +211,12 @@ function chooseLanguage() {
   let englishKlingon = newElement("input", "", ["value", "English to Klingon"], "button");
   let klingonEnglish = newElement("input", "", ["value", "Klingon to English"], "button");
 
-  let lesson = document.getElementById("lesson");
   englishKlingon.addEventListener("click", () => {
-    lesson.removeChild(lesson.lastChild);
+    quiz.removeChild(quiz.lastChild);
     displayWords(1, "english", "klingon")
   });
   klingonEnglish.addEventListener("click", () => {
-    lesson.removeChild(lesson.lastChild);
+    quiz.removeChild(quiz.lastChild);
     displayWords(1, "klingon", "english")
   });
 
@@ -256,7 +256,6 @@ function displayWords(level, fromLang, toLang) {
     }
   }
 
-  let lesson = document.getElementById("lesson");
   let vocabulary = newElement("div");
 
   //Create tags for each word
@@ -264,11 +263,15 @@ function displayWords(level, fromLang, toLang) {
     vocabulary.append(questions(dict[word][fromLang], dict[word][toLang], `Imagine ${dict[word].imagine}`, toLang));
   }
 
-  lesson.append(vocabulary);
+  quiz.append(vocabulary);
 };
 
 let testFunction = document.getElementById("start");
-testFunction.addEventListener("click", () => sentenceGenerator()); //testing function
+testFunction.addEventListener("click", () => {
+  quiz.removeChild(quiz.lastChild);
+  sentenceGenerator()
+}
+); //testing function
 
 function checkAnswer(input, answer, result, toLang) {
   let inputValue;
@@ -295,7 +298,6 @@ function randomWord(selectDictionary) {
 };
 
 function sentenceGenerator() {
-  //TODO: finish logic to create sentences
   let verbDict;
   let nounDict;
   for (let word in dictionary) {
@@ -307,15 +309,18 @@ function sentenceGenerator() {
   }
 
   // let numberOfNouns = () => Math.floor(Math.random()*2);
-  let verb = randomWord(verbDict);
-  let noun = randomWord(nounDict);
 
-  let phrase = {
-    klingon: `${verbDict[verb].klingon} ${nounDict[noun].klingon}`,
-    english: `The ${nounDict[noun].english} ${verbDict[verb].english}`
-  };
+  let sentences = newElement("div");
 
-  let sencences = document.getElementById("sentences");
+  for (let i = 0; i < 10; i++){
+    let verb = randomWord(verbDict);
+    let noun = randomWord(nounDict);
+    let phrase = {
+      klingon: `${verbDict[verb].klingon} ${nounDict[noun].klingon}`,
+      english: `The ${nounDict[noun].english} ${verbDict[verb].english}`
+    };
 
-  sentences.append(questions(phrase.klingon, phrase.english, "", "english"));
+    sentences.append(questions(phrase.klingon, phrase.english, "", "english"));
+  }
+  quiz.append(sentences);
 };

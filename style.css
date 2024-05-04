@@ -17,4 +17,5 @@
 
 #lesson {
   display: flex;
+  flex-direction: column;
 }
