@@ -115,6 +115,7 @@ let dictionary = {
   jaH: {
     klingon: "jaH",
     type: "verb",
+    transitive: false,
     english: "goes",
     level: 1,
     imagine: "JACK GOES up the Hill.",
@@ -122,6 +123,7 @@ let dictionary = {
   ghoS: {
     klingon: "ghoS",
     type: "verb",
+    transitive: false,
     english: "comes",
     level: 1,
     imagine: "lots of people COME towards you in a RUSH.",
@@ -129,6 +131,7 @@ let dictionary = {
   Sop: {
     klingon: "Sop",
     type: "verb",
+    transitive: true,
     english: "eats",
     level: 1,
     imagine: "you EAT everything in the SHOP. CHOP CHOP!",
@@ -136,6 +139,7 @@ let dictionary = {
   tlhutlh: {
     klingon: "tlhutlh",
     type: "verb",
+    transitive: true,
     english: "drinks",
     level: 1,
     imagine: "a musician DRINKS wine using THE LUTE as a cup.",
@@ -143,6 +147,7 @@ let dictionary = {
   jatlh: {
     klingon: "jathl",
     type: "verb",
+    transitive: false,
     english: "speaks",
     level: 1,
     imagine: "a SPEAKING CHART WILL always tell you where to go.",
@@ -150,6 +155,7 @@ let dictionary = {
   yaj: {
     klingon: "yaj",
     type: "verb",
+    transitive: true,
     english: "understands",
     level: 1,
     imagine: "no one UNDERSTANDS the inscription written on the ARCH.",
@@ -157,6 +163,7 @@ let dictionary = {
   laD: {
     klingon: "laD",
     type: "verb",
+    transitive: true,
     english: "reads",
     level: 1,
     imagine: "you READ a large book on how to make LARD.",
@@ -164,15 +171,23 @@ let dictionary = {
   ghItlh: {
     klingon: "ghItlh",
     type: "verb",
+    transitive: true,
     english: "writes",
     level: 1,
     imagine: "you WRITE a RIDDLE to describe how to find your buried treasure.",
+  },
+  suffix_be_: {
+    klingon: "-be'",
+    type: "suffix",
+    english: "don't",
+    level: 1,
+    imagine: "this word is NOT 'woman'... It's a suffix.",
   },
 };
  
 function displayWords(level) {
 
-  //Filter words by level
+  //Filter words by level |TODO: extract logic to outer scope
   let dict;
 
   for (let word in dictionary) {
@@ -220,7 +235,7 @@ function displayWords(level) {
 };
 
 let testFunction = document.getElementById("start");
-//testFunction.addEventListener("click", () => displayWords("level1")); //testing function
+testFunction.addEventListener("click", () => sentenceGenerator()); //testing function
 
 function checkAnswer(input, answer, result) {
   if (input.value.toLowerCase() == answer) {
@@ -231,5 +246,32 @@ function checkAnswer(input, answer, result) {
     result.removeAttribute("style");
   };
 };
+
+function randomWord(selectDictionary) {
+  let dictionaryKeys = Object.keys(selectDictionary);
+  return dictionaryKeys[Math.floor(Math.random()*dictionaryKeys.length)];
+
+};
+
+function sentenceGenerator() {
+  //TODO: finish logic to create sentences
+  let verbDict;
+  let nounDict;
+  for (let word in dictionary) {
+    if (dictionary[word].type == "verb") {
+      verbDict = { ...verbDict, [word]: dictionary[word] };
+    } else if (dictionary[word].type == "noun") {
+      nounDict = { ...nounDict, [word]: dictionary[word] };
+    }
+  };
+
+  // let numberOfNouns = () => Math.floor(Math.random()*2);
+  let verb = randomWord(verbDict);
+  let noun = randomWord(nounDict);
+
+  console.log(dictionary[noun].english, dictionary[verb].english)
+
+};
+
 
 displayWords(1); //testing function
