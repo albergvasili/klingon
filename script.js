@@ -185,6 +185,15 @@ let dictionary = {
   },
 };
 
+let chooseLesson = document.getElementById("choose-lesson");
+let startLesson = document.getElementById("start-lesson");
+startLesson.addEventListener("click", () => {
+  chooseLesson.setAttribute("style", "display: none");
+  chooseLanguage();
+}
+);
+
+
 function newElement(element, id="", classe="", extraAttribute=false, type=false) {
   let newElement = document.createElement(element);
   newElement.setAttribute("id", id);
@@ -196,6 +205,24 @@ function newElement(element, id="", classe="", extraAttribute=false, type=false)
     newElement.setAttribute("type", type);
   }
   return newElement;
+};
+
+function chooseLanguage() {
+  let choose = document.getElementById("choose-language");
+  let englishKlingon = newElement("input", "", "", ["value", "English to Klingon"], "button");
+  let klingonEnglish = newElement("input", "", "", ["value", "Klingon to English"], "button");
+
+  let lesson = document.getElementById("lesson");
+  englishKlingon.addEventListener("click", () => {
+    lesson.removeChild(lesson.lastChild);
+    displayWords(1, "klingon", "english")
+  });
+  klingonEnglish.addEventListener("click", () => {
+    lesson.removeChild(lesson.lastChild);
+    displayWords(1, "english", "klingon")
+  });
+
+  choose.append(englishKlingon, klingonEnglish);
 };
  
 function displayWords(level, fromLang, toLang) {
@@ -285,4 +312,4 @@ function sentenceGenerator() {
 };
 
 
-displayWords(1, "english", "klingon"); //testing function
+//displayWords(1, "english", "klingon"); //testing function
