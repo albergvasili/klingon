@@ -270,13 +270,14 @@ testFunction.addEventListener("click", () => sentenceGenerator()); //testing fun
 
 function checkAnswer(input, answer, result, toLang) {
   let inputValue;
-  if (toLang == "english") {
-    inputValue = input.value.toLowerCase();
+  if (toLang === "english") {
+    inputValue = input.value.trim().toLowerCase();
+    answer = answer.toLowerCase();
   } else {
-    inputValue = input.value;
+    inputValue = input.value.trim();
   }
 
-  if (inputValue == answer) {
+  if (inputValue === answer) {
     result.removeAttribute("style");
     result.textContent = "Correct !";
     input.setAttribute("readonly", "readonly");
@@ -296,9 +297,9 @@ function sentenceGenerator() {
   let verbDict;
   let nounDict;
   for (let word in dictionary) {
-    if (dictionary[word].type == "verb") {
+    if (dictionary[word].type === "verb") {
       verbDict = { ...verbDict, [word]: dictionary[word] };
-    } else if (dictionary[word].type == "noun") {
+    } else if (dictionary[word].type === "noun") {
       nounDict = { ...nounDict, [word]: dictionary[word] };
     }
   }
@@ -307,9 +308,29 @@ function sentenceGenerator() {
   let verb = randomWord(verbDict);
   let noun = randomWord(nounDict);
 
-  console.log(dictionary[noun].english, dictionary[verb].english)
+  let phrase = {
+    klingon: `${verbDict[verb].klingon} ${nounDict[noun].klingon}`,
+    english: `The ${nounDict[noun].english} ${verbDict[verb].english}`
+  };
 
+  // TODO: Refactor tag creation logic from displayWords()
+  let sencences = document.getElementById("sentences");
+
+  let wordContainer = newElement("div", "", "wordContainer");
+  let inputContainer = newElement("div", "", "inputContainer");
+
+  let label = document.createElement("label");
+  let input = newElement("input", "", "", ["size", 10], "text");
+  let button = newElement("input", "", "", ["value", "submit"], "submit");
+  let result = newElement("div", "", "result", ["style", "display: none"]);
+
+  label.textContent = phrase.klingon;
+  result.textContent = `Try again. ${phrase.english}`;
+  button.addEventListener("click", () => {
+    checkAnswer(input, phrase.english, result, "english");
+  });
+
+  inputContainer.append(label, input, button);
+  wordContainer.append(inputContainer, result);
+  sentences.append(wordContainer);
 };
-
-
-//displayWords(1, "english", "klingon"); //testing function
