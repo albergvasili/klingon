@@ -188,11 +188,22 @@ let dictionary = {
 let quiz = document.getElementById("quiz");
 let chooseLesson = document.getElementById("choose-lesson");
 let startLesson = document.getElementById("start-lesson");
+let selection = document.getElementById("selection");
+let dictByLevel;
+
 startLesson.addEventListener("click", () => {
   chooseLesson.setAttribute("style", "display: none");
+  selectLevel(selection.value);
   chooseLanguage();
-}
-);
+});
+
+function selectLevel(level) {
+  for (let word in dictionary) {
+    if (dictionary[word].level <= level) {
+      dictByLevel = { ...dictByLevel, [word]: dictionary[word]};
+    }
+  }
+};
 
 function newElement(element, classe="", extraAttribute=false, type=false) {
   let newElement = document.createElement(element);
@@ -206,18 +217,26 @@ function newElement(element, classe="", extraAttribute=false, type=false) {
   return newElement;
 };
 
+/* TODO: finish refactoring chooseLanguage()
+function selectQuiz(buttonValue, questionGeneratorFunction) {
+  let languageButton = newElement("input", "", ["value", buttonValue], "button");
+  languageButton.addEventListener("click", () => {
+    quiz.removeChild(quiz.lastChild);
+    return questionGeneratorFunction;
+  });
+};
+*/
+
 function chooseLanguage() {
-  //TODO: refactor: selectQuiz(buttonValue, questionCreatorFunction)
-  //
   let choose = document.getElementById("choose-language");
-  let englishKlingon = newElement("input", "", ["value", "English to Klingon"], "button");
-  let klingonEnglish = newElement("input", "", ["value", "Klingon to English"], "button");
-  let englishKlingonSentence = newElement("input", "", ["value", "Enlish-Klingon sentences"], "button");
-  let klingonEnglishSentence = newElement("input", "", ["value", "Klingon-English sentences"], "button");
+  let englishKlingon = newElement("input", "", ["value", "Eng-Kli words"], "button");
+  let klingonEnglish = newElement("input", "", ["value", "Kli-Eng words"], "button");
+  let englishKlingonSentence = newElement("input", "", ["value", "Eng-Kli sentences"], "button");
+  let klingonEnglishSentence = newElement("input", "", ["value", "Kli-Eng sentences"], "button");
 
   englishKlingon.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
-    displayWords(1, "english", "klingon")
+    wordGenerator("english", "klingon")
   });
 
   englishKlingonSentence.addEventListener("click", () => {
@@ -227,7 +246,7 @@ function chooseLanguage() {
 
   klingonEnglish.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
-    displayWords(1, "klingon", "english")
+    wordGenerator("klingon", "english")
   });
 
   klingonEnglishSentence.addEventListener("click", () => {
@@ -260,22 +279,12 @@ function questions(translate, answer, wrongAnswer="", toLang) {
   return questionContainer;
 };
  
-function displayWords(level, fromLang, toLang) {
-
-  //Filter words by level |TODO: extract logic to outer scope
-  let dict;
-
-  for (let word in dictionary) {
-    if (dictionary[word].level <= level) {
-      dict = { ...dict, [word]: dictionary[word] }
-    }
-  }
-
+function wordGenerator(fromLang, toLang) {
+  /*TODO: Randomize words*/
   let vocabulary = newElement("div");
 
-  //Create tags for each word
-  for (let word in dict) {
-    vocabulary.append(questions(dict[word][fromLang], dict[word][toLang], `Imagine ${dict[word].imagine}`, toLang));
+  for (let word in dictByLevel) {
+    vocabulary.append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang));
   }
 
   quiz.append(vocabulary);
@@ -302,17 +311,16 @@ function checkAnswer(input, answer, result, toLang) {
 function randomWord(selectDictionary) {
   let dictionaryKeys = Object.keys(selectDictionary);
   return dictionaryKeys[Math.floor(Math.random()*dictionaryKeys.length)];
-
 };
 
 function sentenceGenerator(fromLang, toLang) {
   let verbDict;
   let nounDict;
-  for (let word in dictionary) {
-    if (dictionary[word].type === "verb") {
-      verbDict = { ...verbDict, [word]: dictionary[word] };
-    } else if (dictionary[word].type === "noun") {
-      nounDict = { ...nounDict, [word]: dictionary[word] };
+  for (let word in dictByLevel) {
+    if (dictByLevel[word].type === "verb") {
+      verbDict = { ...verbDict, [word]: dictByLevel[word] };
+    } else if (dictByLevel[word].type === "noun") {
+      nounDict = { ...nounDict, [word]: dictByLevel[word] };
     }
   }
 
