@@ -207,22 +207,35 @@ function newElement(element, classe="", extraAttribute=false, type=false) {
 };
 
 function chooseLanguage() {
-  //TODO: Add buttons for sentences
+  //TODO: refactor: selectQuiz(buttonValue, questionCreatorFunction)
   //
   let choose = document.getElementById("choose-language");
   let englishKlingon = newElement("input", "", ["value", "English to Klingon"], "button");
   let klingonEnglish = newElement("input", "", ["value", "Klingon to English"], "button");
+  let englishKlingonSentence = newElement("input", "", ["value", "Enlish-Klingon sentences"], "button");
+  let klingonEnglishSentence = newElement("input", "", ["value", "Klingon-English sentences"], "button");
 
   englishKlingon.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
     displayWords(1, "english", "klingon")
   });
+
+  englishKlingonSentence.addEventListener("click", () => {
+    quiz.removeChild(quiz.lastChild);
+    sentenceGenerator("english", "klingon");
+  });
+
   klingonEnglish.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
     displayWords(1, "klingon", "english")
   });
 
-  choose.append(englishKlingon, klingonEnglish);
+  klingonEnglishSentence.addEventListener("click", () => {
+    quiz.removeChild(quiz.lastChild);
+    sentenceGenerator("klingon", "english");
+  });
+
+  choose.append(englishKlingon, klingonEnglish, englishKlingonSentence, klingonEnglishSentence);
 };
 
 function questions(translate, answer, wrongAnswer="", toLang) {
@@ -267,13 +280,6 @@ function displayWords(level, fromLang, toLang) {
 
   quiz.append(vocabulary);
 };
-
-let testFunction = document.getElementById("start");
-testFunction.addEventListener("click", () => {
-  quiz.removeChild(quiz.lastChild);
-  sentenceGenerator("english", "klingon")
-}
-); //testing function
 
 function checkAnswer(input, answer, result, toLang) {
   let inputValue;
