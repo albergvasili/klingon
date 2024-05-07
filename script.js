@@ -82,7 +82,7 @@ let dictionary = {
     type: "noun",
     english: "patient",
     level: 1,
-    imagine: "a PATIENT refuses to let the nurse change the SEET.",
+    imagine: "a PATIENT refuses to let the nurse change the SHEETs.",
   },
   qorDu_: {
     klingon: "qorDu'",
@@ -444,18 +444,6 @@ function questions(translate, answer, hintMessage="", toLang, showHint=false) {
 
   return questionContainer;
 };
- 
-function wordGenerator(fromLang, toLang, hint) {
-  /*TODO: Randomize words*/
-  let vocabulary = newElement("div");
-
-  for (let word in dictByLevel) {
-    vocabulary
-      .append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang, hint));
-  }
-
-  quiz.append(vocabulary);
-};
 
 function checkAnswer(input, answer, result, toLang) {
   let inputValue;
@@ -478,6 +466,19 @@ function checkAnswer(input, answer, result, toLang) {
 function randomWord(selectDictionary) {
   let dictionaryKeys = Object.keys(selectDictionary);
   return dictionaryKeys[Math.floor(Math.random()*dictionaryKeys.length)];
+};
+
+function wordGenerator(fromLang, toLang, hint) {
+  let vocabulary = newElement("div");
+
+  for (let i = 0; i < 10; i++){
+    let noun = randomWord(dictByLevel);
+
+    vocabulary
+      .append(questions(dictByLevel[noun][fromLang], dictByLevel[noun][toLang], `Imagine ${dictByLevel[noun].imagine}`, toLang, hint));
+  }
+
+  quiz.append(vocabulary);
 };
 
 function sentenceGenerator(fromLang, toLang) {
