@@ -392,7 +392,7 @@ function chooseLanguage() {
 
   englishKlingon.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
-    wordGenerator("english", "klingon")
+    wordGenerator("english", "klingon", true)
   });
 
   englishKlingonSentence.addEventListener("click", () => {
@@ -413,7 +413,7 @@ function chooseLanguage() {
   choose.append(englishKlingon, klingonEnglish, englishKlingonSentence, klingonEnglishSentence);
 };
 
-function questions(translate, answer, wrongAnswer="", toLang) {
+function questions(translate, answer, hintMessage="", toLang, showHint=false) {
   let questionContainer = newElement("div", "questionContainer");
   let formContainer = newElement("div", "formContainer");
   let label = document.createElement("label");
@@ -427,7 +427,11 @@ function questions(translate, answer, wrongAnswer="", toLang) {
     checkAnswer(input, answer, result, toLang);
   });
 
-  result.textContent = `Try again ${wrongAnswer}`;
+  if (showHint) {
+    result.textContent = `Try again ${hintMessage}`;
+  } else {
+    result.textContent = `Try again`;
+  }
 
   formContainer.append(label, input, button);
   questionContainer.append(formContainer, result);
@@ -435,12 +439,13 @@ function questions(translate, answer, wrongAnswer="", toLang) {
   return questionContainer;
 };
  
-function wordGenerator(fromLang, toLang) {
+function wordGenerator(fromLang, toLang, hint) {
   /*TODO: Randomize words*/
   let vocabulary = newElement("div");
 
   for (let word in dictByLevel) {
-    vocabulary.append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang));
+    vocabulary
+      .append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang, hint));
   }
 
   quiz.append(vocabulary);
