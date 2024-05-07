@@ -189,7 +189,7 @@ let dictionary = {
     transitive: true,
     english: "sees",
     level: 2,
-    imagine: "",
+    imagine: "you SEE the LAIR of a dangerous animal in the distance.",
   },
   Qoy: {
     klingon: "Qoy",
@@ -197,7 +197,7 @@ let dictionary = {
     transitive: true,
     english: "hears",
     level: 2,
-    imagine: "",
+    imagine: "the Queen puts her head into the pond in order to HEAR the KOI fish.",
   },
   ghaj: {
     klingon: "ghaj",
@@ -205,7 +205,7 @@ let dictionary = {
     transitive: true,
     english: "has",
     level: 2,
-    imagine: "",
+    imagine: "a klingon HAS several RANCHes in texas.",
   },
   neH: {
     klingon: "neH",
@@ -213,7 +213,7 @@ let dictionary = {
     transitive: true,
     english: "wants",
     level: 2,
-    imagine: "",
+    imagine: "a thirsty vampire WANTS to find a nice, juicy NECK.",
   },
   QaH: {
     klingon: "QaH",
@@ -221,7 +221,7 @@ let dictionary = {
     transitive: true,
     english: "helps",
     level: 2,
-    imagine: "",
+    imagine: "the Queen HELPS some hunters to cut up a CARcass of a dead animal.",
   },
   lob: {
     klingon: "lob",
@@ -229,7 +229,7 @@ let dictionary = {
     transitive: true,
     english: "obeys",
     level: 2,
-    imagine: "",
+    imagine: "a businessman who will obey anyone who massageshis earLOBE.",
   },
   ghoj: {
     klingon: "ghoj",
@@ -237,7 +237,7 @@ let dictionary = {
     transitive: false,
     english: "learns",
     level: 2,
-    imagine: "",
+    imagine: "a classroom full of ROACHes LEARNING klingon.",
   },
   ghojmoH: {
     klingon: "ghojmoH",
@@ -245,35 +245,35 @@ let dictionary = {
     transitive: true,
     english: "teaches",
     level: 2,
-    imagine: "",
+    imagine: "a classroom where the ROACHes MOCK their TEACHer.",
   },
   tera_: {
     klingon: "tera'",
     type: "noun",
     english: "earth",
     level: 2,
-    imagine: "",
+    imagine: "Orbis tertius...",
   },
   vulqan: {
     klingon: "vulqan",
     type: "noun",
     english: "vulcan",
     level: 2,
-    imagine: "",
+    imagine: "another planet.",
   },
   romuluS: {
     klingon: "romuluS",
     type: "noun",
     english: "romulus",
     level: 2,
-    imagine: "",
+    imagine: "this is not the founder of rome.",
   },
   qarDaS: {
     klingon: "qarDaS",
     type: "noun",
     english: "cardassia",
     level: 2,
-    imagine: "",
+    imagine: "not a species of armenian stone-carvers.",
   },
   Har: {
     klingon: "Har",
@@ -281,7 +281,7 @@ let dictionary = {
     transitive: false,
     english: "believe",
     level: 2,
-    imagine: "",
+    imagine: "you now BELIEVE that the milky way is made of long white HAIRs",
   },
   Hon: {
     klingon: "Hon",
@@ -289,7 +289,7 @@ let dictionary = {
     transitive: false,
     english: "doubts",
     level: 2,
-    imagine: "",
+    imagine: "you DOUBT that this 300 year old HONey is still edible.",
   },
   vIt: {
     klingon: "vIt",
@@ -297,7 +297,7 @@ let dictionary = {
     transitive: false,
     english: "tells the truth",
     level: 2,
-    imagine: "",
+    imagine: "your FEET always TELL THE TRUTH",
   },
   nep: {
     klingon: "nep",
@@ -305,7 +305,7 @@ let dictionary = {
     transitive: false,
     english: "lies",
     level: 2,
-    imagine: "",
+    imagine: "your enemy promises you a trip to NEPtune... it's a LIE.",
   },
   yIt: {
     klingon: "yIt",
@@ -313,7 +313,7 @@ let dictionary = {
     transitive: false,
     english: "walks",
     level: 2,
-    imagine: "",
+    imagine: "you must WALK another hundred miles before YOU EAT.",
   },
   qet: {
     klingon: "qet",
@@ -321,7 +321,7 @@ let dictionary = {
     transitive: false,
     english: "runs",
     level: 2,
-    imagine: "",
+    imagine: "you ask KATE out on a date - she RUNS away as fast as she can.",
   },
   jaw: {
     klingon: "jaw",
@@ -329,7 +329,7 @@ let dictionary = {
     transitive: false,
     english: "chats",
     level: 2,
-    imagine: "",
+    imagine: "two JOUsting knights stop halfway through a contest to have a nice chat.",
   },
   lop: {
     klingon: "lop",
@@ -337,7 +337,7 @@ let dictionary = {
     transitive: false,
     english: "celebrates",
     level: 2,
-    imagine: "",
+    imagine: "an old woman ELOPES from the psychiatric institution and CELEBRATES her victory over the nurses.",
   },
 };
 
