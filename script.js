@@ -463,19 +463,22 @@ function checkAnswer(input, answer, result, toLang) {
   }
 };
 
-function randomWord(selectDictionary) {
-  let dictionaryKeys = Object.keys(selectDictionary);
+function randomWord(selectDictionary, exceptions=[]) {
+  let dictionaryKeys = Object.keys(selectDictionary).filter(word => !exceptions.includes(word));;
+
   return dictionaryKeys[Math.floor(Math.random()*dictionaryKeys.length)];
 };
 
 function wordGenerator(fromLang, toLang, hint) {
   let vocabulary = newElement("div");
+  let wordsUsed = [];
 
-  for (let i = 0; i < 10; i++){
-    let noun = randomWord(dictByLevel);
+  for (let i = 0; i < 15; i++){
+    let word = randomWord(dictByLevel, wordsUsed);
+    wordsUsed = [...wordsUsed, word];
 
     vocabulary
-      .append(questions(dictByLevel[noun][fromLang], dictByLevel[noun][toLang], `Imagine ${dictByLevel[noun].imagine}`, toLang, hint));
+      .append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang, hint));
   }
 
   quiz.append(vocabulary);
