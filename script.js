@@ -346,6 +346,7 @@ let chooseLesson = document.getElementById("choose-lesson");
 let startLesson = document.getElementById("start-lesson");
 let selection = document.getElementById("selection");
 let dictByLevel;
+let dictAccumulated;
 
 startLesson.addEventListener("click", () => {
   chooseLesson.setAttribute("style", "display: none");
@@ -357,6 +358,11 @@ function selectLevel(level) {
   for (let word in dictionary) {
     if (dictionary[word].level == level) {
       dictByLevel = { ...dictByLevel, [word]: dictionary[word]};
+    }
+  }
+  for (let word in dictionary) {
+    if (dictionary[word].level <= level) {
+      dictAccumulated = { ...dictAccumulated, [word]: dictionary[word]};
     }
   }
 };
@@ -477,11 +483,11 @@ function randomWord(selectDictionary) {
 function sentenceGenerator(fromLang, toLang) {
   let verbDict;
   let nounDict;
-  for (let word in dictByLevel) {
-    if (dictByLevel[word].type === "verb") {
-      verbDict = { ...verbDict, [word]: dictByLevel[word] };
-    } else if (dictByLevel[word].type === "noun") {
-      nounDict = { ...nounDict, [word]: dictByLevel[word] };
+  for (let word in dictAccumulated) {
+    if (dictAccumulated[word].type === "verb") {
+      verbDict = { ...verbDict, [word]: dictAccumulated[word] };
+    } else if (dictAccumulated[word].type === "noun") {
+      nounDict = { ...nounDict, [word]: dictAccumulated[word] };
     }
   }
 
