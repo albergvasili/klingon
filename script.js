@@ -391,10 +391,16 @@ function selectQuiz(buttonValue, questionGeneratorFunction) {
 
 function chooseLanguage() {
   let choose = document.getElementById("choose-language");
+  let vocabularyLesson = newElement("input", "", ["value", "Vocabulary"], "button");
   let englishKlingon = newElement("input", "", ["value", "Eng-Kli words"], "button");
   let klingonEnglish = newElement("input", "", ["value", "Kli-Eng words"], "button");
   let englishKlingonSentence = newElement("input", "", ["value", "Eng-Kli sentences"], "button");
   let klingonEnglishSentence = newElement("input", "", ["value", "Kli-Eng sentences"], "button");
+
+  vocabularyLesson.addEventListener("click", () => {
+    quiz.removeChild(quiz.lastChild);
+    vocabularyGenerator();
+  });
 
   englishKlingon.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
@@ -416,7 +422,7 @@ function chooseLanguage() {
     sentenceGenerator("klingon", "english");
   });
 
-  choose.append(englishKlingon, klingonEnglish, englishKlingonSentence, klingonEnglishSentence);
+  choose.append(vocabularyLesson, englishKlingon, klingonEnglish, englishKlingonSentence, klingonEnglishSentence);
 };
 
 function questions(translate, answer, hintMessage="", toLang, showHint=false) {
@@ -434,7 +440,7 @@ function questions(translate, answer, hintMessage="", toLang, showHint=false) {
   });
 
   if (showHint) {
-    result.textContent = `Try again ${hintMessage}`;
+    result.textContent = `Try again: ${hintMessage}`;
   } else {
     result.textContent = `Try again`;
   }
@@ -443,6 +449,24 @@ function questions(translate, answer, hintMessage="", toLang, showHint=false) {
   questionContainer.append(formContainer, result);
 
   return questionContainer;
+};
+
+function vocabularyGenerator() {
+  let vocabulary = newElement("div");
+  for (let word in dictByLevel) {
+
+    let wordObject = dictByLevel[word];
+    let div = newElement("div");
+    let h3 = newElement("h3");
+    let p = newElement("p");
+
+    h3.textContent = `${wordObject.klingon} -> ${wordObject.english}`;
+    p.textContent = `Imagine: ${wordObject.imagine}`;
+    div.append(h3, p);
+
+    vocabulary.append(div);
+  }
+  quiz.append(vocabulary);
 };
 
 function checkAnswer(input, answer, result, toLang) {
