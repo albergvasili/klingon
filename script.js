@@ -344,15 +344,22 @@ let dictionary = {
 let quiz = document.getElementById("quiz");
 let chooseLesson = document.getElementById("choose-lesson");
 let startLesson = document.getElementById("start-lesson");
+let chooseLangDiv = document.getElementById("choose-language");
 let selection = document.getElementById("selection");
 let dictByLevel;
 let dictAccumulated;
 
-startLesson.addEventListener("click", () => {
-  chooseLesson.setAttribute("style", "display: none");
+startLesson.addEventListener("click", () => start());
+
+function start() {
+  let h2 = document.createElement("h2");
+  quiz.removeChild(quiz.lastChild);
+  h2.textContent = `Welcome to lesson ${selection.value} !`;
+  quiz.append(h2);
+  chooseLangDiv.removeChild(chooseLangDiv.lastChild);
   selectLevel(selection.value);
   chooseLanguage();
-});
+};
 
 function selectLevel(level) {
   for (let word in dictionary) {
@@ -391,6 +398,7 @@ function selectQuiz(buttonValue, questionGeneratorFunction) {
 
 function chooseLanguage() {
   let choose = document.getElementById("choose-language");
+  let div = newElement("div");
   let vocabularyLesson = newElement("input", "", ["value", "Vocabulary"], "button");
   let englishKlingon = newElement("input", "", ["value", "Eng-Kli words"], "button");
   let klingonEnglish = newElement("input", "", ["value", "Kli-Eng words"], "button");
@@ -422,7 +430,9 @@ function chooseLanguage() {
     sentenceGenerator("klingon", "english");
   });
 
-  choose.append(vocabularyLesson, englishKlingon, klingonEnglish, englishKlingonSentence, klingonEnglishSentence);
+  div.append(vocabularyLesson, englishKlingon, klingonEnglish, englishKlingonSentence, klingonEnglishSentence);
+
+  choose.append(div);
 };
 
 function questions(translate, answer, hintMessage="", toLang, showHint=false) {
