@@ -3,6 +3,7 @@ let dictionary = {
   loD: {
     klingon: "loD",
     type: "noun",
+    language: true,
     english: "man",
     level: 1,
     imagine: "a MAN carries a heavy LOAD of equipment on his back.",
@@ -10,6 +11,7 @@ let dictionary = {
   be_: {
     klingon: "be'",
     type: "noun",
+    language: true,
     english: "woman",
     level: 1,
     imagine: "a WOMAN chases a ferocious BEAR with a stick.",
@@ -17,13 +19,15 @@ let dictionary = {
   jup: {
     klingon: "jup",
     type: "noun",
+    language: true,
     english: "friend",
     level: 1,
-    imagine: "your best FRIEND is so hungry that they CHEW UP a plate.",
+    imagine: "your best FRIEND goes on a trip to JUPiter.",
   },
   jagh: {
     klingon: "jagh",
     type: "noun",
+    language: true,
     english: "enemy",
     level: 1,
     imagine: "you captured your ENEMY in a large glass JAR.",
@@ -31,6 +35,7 @@ let dictionary = {
   puq: {
     klingon: "puq",
     type: "noun",
+    language: true,
     english: "child",
     level: 1,
     imagine: "a small CHILD is PUKing non-stop.",
@@ -38,6 +43,7 @@ let dictionary = {
   Saj: {
     klingon: "Saj",
     type: "noun",
+    language: false,
     english: "pet",
     level: 1,
     imagine: "in a PET shop, you have never seen SUCH terrifying animals.",
@@ -45,6 +51,7 @@ let dictionary = {
   HoD: {
     klingon: "HoD",
     type: "noun",
+    language: true,
     english: "captain",
     level: 1,
     imagine: "two enemy guards HOLD your CAPTAIN (the Head of Department) by the arms.",
@@ -52,6 +59,7 @@ let dictionary = {
   yaS: {
     klingon: "yaS",
     type: "noun",
+    language: true,
     english: "officer",
     level: 1,
     imagine: "two enemy guards turn your OFFICER into a pile of ASH.",
@@ -59,6 +67,7 @@ let dictionary = {
   nov: {
     klingon: "nov",
     type: "noun",
+    language: true,
     english: "alien",
     level: 1,
     imagine: "aLIENS try to escape a star system that has suddendly gone NOVA.",
@@ -66,6 +75,7 @@ let dictionary = {
   yiH: {
     klingon: "yiH",
     type: "noun",
+    language: false,
     english: "tribble",
     level: 1,
     imagine: "a klingon shouts YEEEK when he finds himself sharing a bed with dozens of TRIBBLES.",
@@ -73,6 +83,7 @@ let dictionary = {
   Qel: {
     klingon: "Qel",
     type: "noun",
+    language: true,
     english: "doctor",
     level: 1,
     imagine: "your DOCTOR could not CARE Less about your health.",
@@ -80,6 +91,7 @@ let dictionary = {
   SID: {
     klingon: "SID",
     type: "noun",
+    language: true,
     english: "patient",
     level: 1,
     imagine: "a PATIENT refuses to let the nurse change the SHEETs.",
@@ -87,6 +99,7 @@ let dictionary = {
   qorDu_: {
     klingon: "qorDu'",
     type: "noun",
+    language: true,
     english: "family",
     level: 1,
     imagine: "you tie your FAMILY together with a CORD TO stop them from hitting each other with sticks.",
@@ -94,6 +107,7 @@ let dictionary = {
   ghu: {
     klingon: "ghu",
     type: "noun",
+    language: true,
     english: "baby",
     level: 1,
     imagine: "a kangoROO holds your BABY in his pouch.",
@@ -101,6 +115,7 @@ let dictionary = {
   tlhIngan: {
     klingon: "tlhIngan",
     type: "noun",
+    language: true,
     english: "klingon",
     level: 1,
     imagine: "the correct spelling of the word 'KLINGON'",
@@ -108,6 +123,7 @@ let dictionary = {
   human: {
     klingon: "Human",
     type: "noun",
+    language: true,
     english: "human",
     level: 1,
     imagine: "a human is a human.",
@@ -116,7 +132,7 @@ let dictionary = {
     klingon: "jaH",
     type: "verb",
     transitive: false,
-    english: "goes",
+    english: ["goes", "go"],
     level: 1,
     imagine: "JACK GOES up the Hill.",
   },
@@ -124,7 +140,7 @@ let dictionary = {
     klingon: "ghoS",
     type: "verb",
     transitive: false,
-    english: "comes",
+    english: ["comes", "come"],
     level: 1,
     imagine: "lots of people COME towards you in a RUSH.",
   },
@@ -132,7 +148,7 @@ let dictionary = {
     klingon: "Sop",
     type: "verb",
     transitive: true,
-    english: "eats",
+    english: ["eats", "eat"],
     level: 1,
     imagine: "you EAT everything in the SHOP. CHOP CHOP!",
   },
@@ -140,7 +156,7 @@ let dictionary = {
     klingon: "tlhutlh",
     type: "verb",
     transitive: true,
-    english: "drinks",
+    english: ["drinks", "drink"],
     level: 1,
     imagine: "a musician DRINKS wine using THE LUTE as a cup.",
   },
@@ -148,7 +164,7 @@ let dictionary = {
     klingon: "jathl",
     type: "verb",
     transitive: false,
-    english: "speaks",
+    english: ["speaks", "speak"],
     level: 1,
     imagine: "a SPEAKING CHART WILL always tell you where to go.",
   },
@@ -156,7 +172,7 @@ let dictionary = {
     klingon: "yaj",
     type: "verb",
     transitive: true,
-    english: "understands",
+    english: ["understands", "understand"],
     level: 1,
     imagine: "no one UNDERSTANDS the inscription written on the ARCH.",
   },
@@ -164,7 +180,7 @@ let dictionary = {
     klingon: "laD",
     type: "verb",
     transitive: true,
-    english: "reads",
+    english: ["reads", "read"],
     level: 1,
     imagine: "you READ a large book on how to make LARD.",
   },
@@ -172,22 +188,36 @@ let dictionary = {
     klingon: "ghItlh",
     type: "verb",
     transitive: true,
-    english: "writes",
+    english: ["writes", "write"],
     level: 1,
     imagine: "you WRITE a RIDDLE to describe how to find your buried treasure.",
   },
   suffix_be_: {
     klingon: "-be'",
-    type: "suffix",
+    type: "verb suffix",
     english: "not",
     level: 1,
-    imagine: "this word is NOT 'woman'... It's a suffix.",
+    imagine: "this is NOT 'woman'... It's a suffix.",
+  },
+  _ej: {
+    klingon: "'ej",
+    type: "conjunction",
+    english: "and",
+    level: 1,
+    imagine: "you are hanging over the EDGE of a cliff, AND ytry to reach a stick to climb back up.",
+  },
+  _ach: {
+    klingon: "'ach",
+    type: "conjunction",
+    english: "and",
+    level: 1,
+    imagine: "the front door is locked, BUT you use a stick to open the HATCH.",
   },
   legh: {
     klingon: "legh",
     type: "verb",
     transitive: true,
-    english: "sees",
+    english: ["sees", "see"],
     level: 2,
     imagine: "you SEE the LAIR of a dangerous animal in the distance.",
   },
@@ -195,7 +225,7 @@ let dictionary = {
     klingon: "Qoy",
     type: "verb",
     transitive: true,
-    english: "hears",
+    english: ["hears", "hear"],
     level: 2,
     imagine: "the Queen puts her head into the pond in order to HEAR the KOI fish.",
   },
@@ -203,7 +233,7 @@ let dictionary = {
     klingon: "ghaj",
     type: "verb",
     transitive: true,
-    english: "has",
+    english: ["has", "have"],
     level: 2,
     imagine: "a klingon HAS several RANCHes in texas.",
   },
@@ -211,7 +241,7 @@ let dictionary = {
     klingon: "neH",
     type: "verb",
     transitive: true,
-    english: "wants",
+    english: ["wants", "want"],
     level: 2,
     imagine: "a thirsty vampire WANTS to find a nice, juicy NECK.",
   },
@@ -219,7 +249,7 @@ let dictionary = {
     klingon: "QaH",
     type: "verb",
     transitive: true,
-    english: "helps",
+    english: ["helps", "help"],
     level: 2,
     imagine: "the Queen HELPS some hunters to cut up a CARcass of a dead animal.",
   },
@@ -227,7 +257,7 @@ let dictionary = {
     klingon: "lob",
     type: "verb",
     transitive: true,
-    english: "obeys",
+    english: ["obeys", "obey"],
     level: 2,
     imagine: "a businessman who will obey anyone who massageshis earLOBE.",
   },
@@ -235,7 +265,7 @@ let dictionary = {
     klingon: "ghoj",
     type: "verb",
     transitive: false,
-    english: "learns",
+    english: ["learns", "learn"],
     level: 2,
     imagine: "a classroom full of ROACHes LEARNING klingon.",
   },
@@ -243,13 +273,14 @@ let dictionary = {
     klingon: "ghojmoH",
     type: "verb",
     transitive: true,
-    english: "teaches",
+    english: ["teaches", "teach"],
     level: 2,
     imagine: "a classroom where the ROACHes MOCK their TEACHer.",
   },
   tera_: {
     klingon: "tera'",
     type: "noun",
+    language: false,
     english: "earth",
     level: 2,
     imagine: "Orbis tertius...",
@@ -257,6 +288,7 @@ let dictionary = {
   vulqan: {
     klingon: "vulqan",
     type: "noun",
+    language: false,
     english: "vulcan",
     level: 2,
     imagine: "another planet.",
@@ -264,6 +296,7 @@ let dictionary = {
   romuluS: {
     klingon: "romuluS",
     type: "noun",
+    language: false,
     english: "romulus",
     level: 2,
     imagine: "this is not the founder of rome.",
@@ -271,6 +304,7 @@ let dictionary = {
   qarDaS: {
     klingon: "qarDaS",
     type: "noun",
+    language: false,
     english: "cardassia",
     level: 2,
     imagine: "not a species of armenian stone-carvers.",
@@ -279,7 +313,7 @@ let dictionary = {
     klingon: "Har",
     type: "verb",
     transitive: false,
-    english: "believe",
+    english: ["believes", "believe"],
     level: 2,
     imagine: "you now BELIEVE that the milky way is made of long white HAIRs",
   },
@@ -287,7 +321,7 @@ let dictionary = {
     klingon: "Hon",
     type: "verb",
     transitive: false,
-    english: "doubts",
+    english: ["doubts", "doubt"],
     level: 2,
     imagine: "you DOUBT that this 300 year old HONey is still edible.",
   },
@@ -295,7 +329,7 @@ let dictionary = {
     klingon: "vIt",
     type: "verb",
     transitive: false,
-    english: "tells the truth",
+    english: ["tells the truth", "tell the truth"],
     level: 2,
     imagine: "your FEET always TELL THE TRUTH",
   },
@@ -303,7 +337,7 @@ let dictionary = {
     klingon: "nep",
     type: "verb",
     transitive: false,
-    english: "lies",
+    english: ["lies", "lie"],
     level: 2,
     imagine: "your enemy promises you a trip to NEPtune... it's a LIE.",
   },
@@ -311,7 +345,7 @@ let dictionary = {
     klingon: "yIt",
     type: "verb",
     transitive: false,
-    english: "walks",
+    english: ["walks", "walk"],
     level: 2,
     imagine: "you must WALK another hundred miles before YOU EAT.",
   },
@@ -319,7 +353,7 @@ let dictionary = {
     klingon: "qet",
     type: "verb",
     transitive: false,
-    english: "runs",
+    english: ["runs", "run"],
     level: 2,
     imagine: "you ask KATE out on a date - she RUNS away as fast as she can.",
   },
@@ -327,7 +361,7 @@ let dictionary = {
     klingon: "jaw",
     type: "verb",
     transitive: false,
-    english: "chats",
+    english: ["chats", "chat"],
     level: 2,
     imagine: "two JOUsting knights stop halfway through a contest to have a nice chat.",
   },
@@ -335,13 +369,21 @@ let dictionary = {
     klingon: "lop",
     type: "verb",
     transitive: false,
-    english: "celebrates",
+    english: ["celebrates", "celebrate"],
     level: 2,
     imagine: "an old woman ELOPES from the psychiatric institution and CELEBRATES her victory over the nurses.",
+  },
+  suffix_pu_: {
+    klingon: "pu'",
+    type: "noun suffix",
+    english: "plural",
+    level: 2,
+    imagine: "it's not one, but many...",
   },
   Hov: {
     klingon: "Hov",
     type: "noun",
+    language: false,
     english: "sun",
     level: 3,
     imagine: "a STAR orbited by a million of horse HOOVES.",
@@ -349,6 +391,7 @@ let dictionary = {
   yuQ: {
     klingon: "yuQ",
     type: "noun",
+    language: false,
     english: "planet",
     level: 3,
     imagine: "a PLANET whose residents are being entertained by the Queen on her UKULELE.",
@@ -356,6 +399,7 @@ let dictionary = {
   maS: {
     klingon: "maS",
     type: "noun",
+    language: false,
     english: "moon",
     level: 3,
     imagine: "the earth's MOON is covered in MARSHland",
@@ -363,6 +407,7 @@ let dictionary = {
   Duj: {
     klingon: "Duj",
     type: "noun",
+    language: false,
     english: "ship",
     level: 3,
     imagine: "a SHIP crewed by DUTCH people: The Flying Dutchman.",
@@ -370,6 +415,7 @@ let dictionary = {
   Hoqra_: {
     klingon: "Hoqra'",
     type: "noun",
+    language: false,
     english: "tricorder",
     level: 3,
     imagine: "you use your TRICORDER to analyse an antique HOCKEY stick that is incredibly RARE.",
@@ -377,6 +423,7 @@ let dictionary = {
   nuH: {
     klingon: "nuH",
     type: "noun",
+    language: false,
     english: "weapon",
     level: 3,
     imagine: "a NUKE is the only WEAPON you need.",
@@ -385,7 +432,7 @@ let dictionary = {
     klingon: "thlob",
     type: "verb",
     transitive: true,
-    english: "asks",
+    english: ["asks", "ask"],
     level: 3,
     imagine: "a man ASKS THE LOBE before making an important business decision.",
   },
@@ -393,7 +440,7 @@ let dictionary = {
     klingon: "jang",
     type: "verb",
     transitive: false,
-    english: "answers",
+    english: ["answers", "answer"],
     level: 3,
     imagine: "if someone wants to know if you are rich, you ANSWER by JANGLING the loose coins in your pocket.",
   },
@@ -401,7 +448,7 @@ let dictionary = {
     klingon: "lo'",
     type: "verb",
     transitive: true,
-    english: "uses",
+    english: ["uses", "use"],
     level: 3,
     imagine: "someone who USES the LAW to punish his enemies, rather than using a stick.",
   },
@@ -409,7 +456,7 @@ let dictionary = {
     klingon: "ngeH",
     type: "verb",
     transitive: true,
-    english: "sends",
+    english: ["sends", "send"],
     level: 3,
     imagine: "you SEND some card AND EGGS to your best friend.",
   },
@@ -417,7 +464,7 @@ let dictionary = {
     klingon: "Hev",
     type: "verb",
     transitive: true,
-    english: "receives",
+    english: ["receives", "receive"],
     level: 3,
     imagine: "you have RECEIVED inspiration from the HEAVens.",
   },
@@ -425,7 +472,7 @@ let dictionary = {
     klingon: "je'",
     type: "verb",
     transitive: true,
-    english: "buys",
+    english: ["buys", "buy"],
     level: 3,
     imagine: "you BUY a charming CHAIR made entirely from sticks and twigs.",
   },
@@ -433,7 +480,7 @@ let dictionary = {
     klingon: "ngev",
     type: "verb",
     transitive: true,
-    english: "sells",
+    english: ["sells", "sell"],
     level: 3,
     imagine: "you SELL something AND GIVE all the money to your friends.",
   },
@@ -441,13 +488,14 @@ let dictionary = {
     klingon: "moj",
     type: "verb",
     transitive: true,
-    english: "becomes",
+    english: ["becomes", "become"],
     level: 3,
     imagine: "your company BECOMES bigger and bigger by MERging with all its rivals one by one.",
   },
   vav: {
     klingon: "vav",
     type: "noun",
+    language: true,
     english: "father",
     level: 3,
     imagine: "you have five fathers.",
@@ -455,6 +503,7 @@ let dictionary = {
   SoS: {
     klingon: "SoS",
     type: "noun",
+    language: true,
     english: "mother",
     level: 3,
     imagine: "your MOTHER SHOSHanna is telling you to be quiet - Shhh!.",
@@ -462,6 +511,7 @@ let dictionary = {
   joH: {
     klingon: "joH",
     type: "noun",
+    language: true,
     english: "lord/lady",
     level: 3,
     imagine: "the Lord and the Lady of the house go for an early morning JOG around their vast estate.",
@@ -469,6 +519,7 @@ let dictionary = {
   jIl: {
     klingon: "jIl",
     type: "noun",
+    language: true,
     english: "neighbour",
     level: 3,
     imagine: "all your NEIGHBOURS are called JILL.",
@@ -476,6 +527,7 @@ let dictionary = {
   qama_: {
     klingon: "qama'",
     type: "noun",
+    language: true,
     english: "prisoner",
     level: 3,
     imagine: "you become a PRISONER in a cage made of sticks because you have very bad KARMA.",
@@ -503,6 +555,7 @@ function start() {
 };
 
 function selectLevel(level) {
+  dictByLevel = {};
   for (let word in dictionary) {
     if (dictionary[word].level == level) {
       dictByLevel = { ...dictByLevel, [word]: dictionary[word]};
@@ -611,7 +664,11 @@ function vocabularyGenerator() {
     let h3 = newElement("h3");
     let p = newElement("p");
 
-    h3.textContent = `${wordObject.klingon} -> ${wordObject.english}`;
+    if (wordObject.type === "verb"){
+      h3.textContent = `${wordObject.klingon} -> ${wordObject.english[0]}`;
+    } else {
+      h3.textContent = `${wordObject.klingon} -> ${wordObject.english}`;
+    }
     p.textContent = `Imagine: ${wordObject.imagine}`;
     div.append(h3, p);
 
@@ -652,8 +709,16 @@ function wordGenerator(fromLang, toLang, hint) {
     let word = randomWord(dictByLevel, wordsUsed);
     wordsUsed = [...wordsUsed, word];
 
-    vocabulary
-      .append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang, hint));
+    if (dictByLevel[word].type === "verb" && fromLang === "english") {
+      vocabulary
+        .append(questions(dictByLevel[word][fromLang][0], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang, hint));
+    } else if (dictByLevel[word].type === "verb" && toLang === "english") {
+      vocabulary
+        .append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang][0], `Imagine ${dictByLevel[word].imagine}`, toLang, hint));
+    } else {
+      vocabulary
+        .append(questions(dictByLevel[word][fromLang], dictByLevel[word][toLang], `Imagine ${dictByLevel[word].imagine}`, toLang, hint));
+    }
   }
 
   quiz.append(vocabulary);
@@ -679,7 +744,7 @@ function sentenceGenerator(fromLang, toLang) {
     let noun = randomWord(nounDict);
     let phrase = {
       klingon: `${verbDict[verb].klingon} ${nounDict[noun].klingon}`,
-      english: `The ${nounDict[noun].english} ${verbDict[verb].english}`
+      english: `The ${nounDict[noun].english} ${verbDict[verb].english[0]}`
     };
 
     sentences.append(questions(phrase[fromLang], phrase[toLang], "", toLang));
