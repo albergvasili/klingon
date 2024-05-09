@@ -599,6 +599,8 @@ function chooseLanguage() {
   let englishKlingonSentence = newElement("input", "", ["value", "Eng-Kli sentences"], "button");
   let klingonEnglishSentence = newElement("input", "", ["value", "Kli-Eng sentences"], "button");
 
+  div.setAttribute("id", "choose-lang");
+
   vocabularyLesson.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
     vocabularyGenerator();
