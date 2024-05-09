@@ -536,16 +536,17 @@ let dictionary = {
 
 let quiz = document.getElementById("quiz");
 let chooseLesson = document.getElementById("choose-lesson");
-let startLesson = document.getElementById("start-lesson");
 let chooseLangDiv = document.getElementById("choose-language");
 let selection = document.getElementById("selection");
+let select = document.getElementById("select");
 let dictByLevel;
 let dictAccumulated;
 
-startLesson.addEventListener("click", () => start());
+selection.addEventListener("change", () => start());
 
 function start() {
   let h2 = document.createElement("h2");
+  select.setAttribute("disabled", "");
   quiz.removeChild(quiz.lastChild);
   h2.textContent = `Welcome to lesson ${selection.value} !`;
   quiz.append(h2);
