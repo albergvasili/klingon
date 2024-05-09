@@ -1,8 +1,8 @@
 body {
-  flex-direction: column;
   background-color: #CDF;
   margin: 0px;
   text-align: center;
+  color: #000;
 }
 
 div>* {
@@ -20,6 +20,14 @@ main {
   min-height: 90vh;
 }
 
+h1 {
+  color: #014;
+}
+
+input {
+  background-color: #EEE;
+}
+
 nav,
 #choose-lang {
   background-color: #8BD;
@@ -27,10 +35,6 @@ nav,
 
 #choose-lesson {
   padding: 5px;
-}
-
-h1 {
-  color: #014;
 }
 
 .formContainer {
