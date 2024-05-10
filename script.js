@@ -559,11 +559,13 @@ function start(exception) {
   select.setAttribute("disabled", "");
   quiz.removeChild(quiz.lastChild);
   if (exception.target.value === "0") {
+    chooseLangDiv.setAttribute("style", "display: none");
     pronunciationGenerator();
   } else {
     let h2 = document.createElement("h2");
     h2.textContent = `Welcome to lesson ${selection.value} !`;
     quiz.append(h2);
+    chooseLangDiv.removeAttribute("style");
     chooseLangDiv.removeChild(chooseLangDiv.lastChild);
     selectLevel(selection.value);
     chooseLanguage();
