@@ -533,6 +533,17 @@ let dictionary = {
     imagine: "you become a PRISONER in a cage made of sticks because you have very bad KARMA.",
   },
 };
+let sameAsEnglish = "The letters 'b, ch, j, l, m, n, ng, p, t, v, w, y' are pronounced as in english.";
+let differentConsonants = {
+  D: "The letter 'D' is almost like the english 'd'. The tongue touches the roof of the mouth a little further back.",
+  gh: "The letter 'gh' sounds like the french 'r'. Relaxing the tongue and humming, the vocal cords vibrate.",
+  H: "The letter 'H' is like the german and scottish 'ch' in 'Bach' and 'loch', and like the spanish 'viejo' (spain).",
+  q: "The letter 'q' is like the english 'k'. The tongue reaches for the back of the mouth.",
+  Q: "The letter 'Q' sounds like a combination of the letters 'q' and 'H'.",
+  r: "The letter 'r' is slightly rolled like in spanish.",
+  S: "The letter 'S' sounds like the english 'sh'.",
+  tlh: "The letter 'tlh' is like the spanish 'tl', but the air is forced through the space between the sides of the tongue.",
+};
 
 let quiz = document.getElementById("quiz");
 let chooseLesson = document.getElementById("choose-lesson");
@@ -542,18 +553,41 @@ let select = document.getElementById("select");
 let dictByLevel;
 let dictAccumulated;
 
-selection.addEventListener("change", () => start());
+selection.addEventListener("change", (event) => start(event));
 
-function start() {
-  let h2 = document.createElement("h2");
+function start(exception) {
   select.setAttribute("disabled", "");
   quiz.removeChild(quiz.lastChild);
-  h2.textContent = `Welcome to lesson ${selection.value} !`;
-  quiz.append(h2);
-  chooseLangDiv.removeChild(chooseLangDiv.lastChild);
-  selectLevel(selection.value);
-  chooseLanguage();
+  if (exception.target.value === "0") {
+    pronunciationGenerator();
+  } else {
+    let h2 = document.createElement("h2");
+    h2.textContent = `Welcome to lesson ${selection.value} !`;
+    quiz.append(h2);
+    chooseLangDiv.removeChild(chooseLangDiv.lastChild);
+    selectLevel(selection.value);
+    chooseLanguage();
+  }
 };
+
+function pronunciationGenerator() {
+  let title = document.createElement("h3");
+  title.textContent = "Pronunciation:";
+  let p = document.createElement("p");
+  p.textContent = sameAsEnglish;
+  let pronun = document.createElement("div");
+  pronun.append(title, p);
+  for (let letter in differentConsonants) {
+    let h3 = document.createElement("h3");
+    let p = document.createElement("p");
+    let div = document.createElement("div");
+    h3.textContent = letter;
+    p.textContent = differentConsonants[letter];
+    div.append(h3, p);
+    pronun.append(div);
+  }
+  quiz.append(pronun);
+}
 
 function selectLevel(level) {
   dictByLevel = {};
