@@ -2,7 +2,7 @@ let sameAsEnglish = "The letters 'b, ch, j, l, m, n, ng, p, t, v, w, y' are pron
 let differentConsonants = {
   D: "The letter 'D' is almost like the english 'd'. The tongue touches the roof of the mouth a little further back.",
   gh: "The letter 'gh' sounds like the french 'r'. Relaxing the tongue and humming, the vocal cords vibrate.",
-  H: "The letter 'H' is like the german and scottish 'ch' in 'Bach' and 'loch', and like the spanish 'viejo' (spain).",
+  H: "The letter 'H' is a strong and raspy sound like the klingon 'gh', but the vocal cords don't vibrate. It sounds like the spanish (from spain) 'j' in viejo.",
   q: "The letter 'q' is like the english 'k'. The tongue reaches for the back of the mouth.",
   Q: "The letter 'Q' sounds like a combination of the letters 'q' and 'H'.",
   r: "The letter 'r' is slightly rolled like in spanish.",
