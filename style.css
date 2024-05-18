@@ -29,6 +29,12 @@ input {
   color: #000;
 }
 
+img {
+  max-height: 65vh;
+  border: solid black 3px;
+  margin: 10px;
+}
+
 nav,
 #choose-lang {
   background-color: #8BD;
