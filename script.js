@@ -10,6 +10,15 @@ let differentConsonants = {
   tlh: "The letter 'tlh' is like the spanish 'tl', but the air is forced through the space between the sides of the tongue.",
 };
 
+let videos = {
+  0: "https://www.youtube.com/embed/YjROGAY19pU?si=KBzXdlQPnNPDhJ8E",
+  1: "https://www.youtube.com/embed/W3G1gSWuy7Y?si=xRQt81a3uVVHKt0c",
+  2: "https://www.youtube.com/embed/AUsUCx-72EI?si=jprxZ-EKqYH8vxvu",
+  3: "https://www.youtube.com/embed/HAkvsCCbivo?si=HK3ho7OwFDmGx1Kq",
+  4: "https://www.youtube.com/embed/4CrJ1w_JC3M?si=ub0PmPd6aUxUl4E3",
+  5: "https://www.youtube.com/embed/NClqTP2Uq-E?si=Zcc5WPcRpDO3yNUj",
+};
+
 let quiz = document.getElementById("quiz");
 let chooseLesson = document.getElementById("choose-lesson");
 let chooseLangDiv = document.getElementById("choose-language");
@@ -17,12 +26,14 @@ let selection = document.getElementById("selection");
 let select = document.getElementById("select");
 let dictByLevel;
 let dictAccumulated;
+let currentLevel;
 
 selection.addEventListener("change", (event) => start(event));
 
 function start(exception) {
   select.setAttribute("disabled", "");
   quiz.removeChild(quiz.lastChild);
+  currentLevel = selection.value;
   if (exception.target.value === "0") {
     chooseLangDiv.setAttribute("style", "display: none");
     pronunciationGenerator();
@@ -44,6 +55,7 @@ function pronunciationGenerator() {
   p.textContent = sameAsEnglish;
   let pronun = document.createElement("div");
   pronun.append(title, p);
+
   for (let letter in differentConsonants) {
     let h3 = document.createElement("h3");
     let p = document.createElement("p");
@@ -53,6 +65,7 @@ function pronunciationGenerator() {
     div.append(h3, p);
     pronun.append(div);
   }
+  pronun.append(iframeTag(videos[currentLevel]));
   quiz.append(pronun);
 }
 
@@ -178,6 +191,7 @@ function vocabularyGenerator() {
 
     vocabulary.append(div);
   }
+  vocabulary.append(iframeTag(videos[currentLevel]));
   quiz.append(vocabulary);
 };
 
@@ -256,3 +270,20 @@ function sentenceGenerator(fromLang, toLang) {
 
   quiz.append(sentences);
 };
+
+function iframeTag(link) {
+  //TODO: finish creating function for iframes
+  let iframe = document.createElement("iframe");
+  iframe.setAttribute("src", link);
+  iframe.setAttribute("title", "Youtube video player");
+  iframe.setAttribute("width", "560");
+  iframe.setAttribute("height", "315");
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("allow",
+    `accelerometer; autoplay; clipboard-write;
+     encripted-media; gyrospope; picture-in-picture; web-share`
+  );
+  iframe.setAttribute("allowfullscreen", "");
+
+  return iframe;
+}
