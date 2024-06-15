@@ -34,7 +34,7 @@ function start(exception) {
   select.setAttribute("disabled", "");
   quiz.removeChild(quiz.lastChild);
   currentLevel = selection.value;
-  if (exception.target.value === "0") {
+  if (currentLevel === "0") {
     chooseLangDiv.setAttribute("style", "display: none");
     pronunciationGenerator();
   } else {
@@ -116,6 +116,9 @@ function chooseLanguage() {
 
   div.setAttribute("id", "choose-lang");
 
+  quiz.removeChild(quiz.lastChild);
+  vocabularyGenerator();
+
   vocabularyLesson.addEventListener("click", () => {
     quiz.removeChild(quiz.lastChild);
     vocabularyGenerator();
@@ -174,6 +177,11 @@ function questions(translate, answer, hintMessage="", toLang, showHint=false) {
 
 function vocabularyGenerator() {
   let vocabulary = newElement("div");
+  let title = document.createElement("h2");
+
+  title.textContent = "Vocabulary";
+  vocabulary.append(title);
+
   for (let word in dictByLevel) {
 
     let wordObject = dictByLevel[word];
